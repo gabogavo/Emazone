@@ -8,11 +8,13 @@ public interface ICategoryPersistencePort {
 
     Category saveCategory(Category category);
 
-    List<Category> getAllCategory();
+    List<Category> getAllCategories();
 
     Category getCategory(Long id);
 
     void updateCategory(Category category);
 
     void deleteCategory(Long id);
+
+    void saveCategory();
 }

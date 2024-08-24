@@ -6,9 +6,7 @@ import java.util.List;
 
 public interface ICategoryServicePort {
 
-    Category saveCategory(Category category);
-
-    List<Category> getAllCategory();
+    void saveCategory(Category category);
 
     Category getCategory(Long id);
 
@@ -16,4 +14,7 @@ public interface ICategoryServicePort {
 
     void deleteCategory(Long id);
 
+    Category getCategory(String name);
+
+    List<Category> getAllCategories(Integer page, Integer size);
 }
