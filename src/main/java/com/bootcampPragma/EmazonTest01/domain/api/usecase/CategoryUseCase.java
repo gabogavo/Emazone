@@ -1,4 +1,4 @@
-package com.bootcampPragma.EmazonTest01.domain.usecase;
+package com.bootcampPragma.EmazonTest01.domain.api.usecase;
 
 import com.bootcampPragma.EmazonTest01.domain.api.ICategoryServicePort;
 import com.bootcampPragma.EmazonTest01.domain.model.Category;
