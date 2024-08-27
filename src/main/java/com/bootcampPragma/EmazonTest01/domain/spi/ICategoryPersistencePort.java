@@ -9,7 +9,7 @@ public interface ICategoryPersistencePort {
 
     Category getCategory(Long id);
 
-    Category getCategory(String name);
+    Category getCategory();
 
     List<Category> getAllCategories(Integer page, Integer size);
 

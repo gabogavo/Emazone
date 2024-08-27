@@ -13,7 +13,7 @@ public interface ICategoryServicePort {
 
     List<Category> getAllCategories(Integer page, Integer size);
 
-    void updateCategory(Category category);
+    Category updateCategory(Category category);
 
     void deleteCategory(Long id);
 }
