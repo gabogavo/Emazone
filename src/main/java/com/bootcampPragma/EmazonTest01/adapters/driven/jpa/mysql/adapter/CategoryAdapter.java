@@ -29,7 +29,12 @@ public class CategoryAdapter implements ICategoryPersistencePort {
 
     @Override
     public Category getCategory(Long id) {
-        return null;
+        // Buscar la entidad en el repositorio por ID
+        CategoryEntity categoryEntity = categoryRepository.findById(id)
+                .orElseThrow(() -> new CategoryNotFoundException("Category with id " + id + " not found."));
+
+        // Convertir la entidad a modelo de dominio
+        return categoryEntityMapper.toModel(categoryEntity);
     }
 
     @Override
