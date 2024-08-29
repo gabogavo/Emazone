@@ -65,10 +65,10 @@ class CategoryUseCaseTest {
     void getAllCategories_ReturnsList() {
         // Arrange
         Category category = new Category(1L, "CategoryName", "Description");
-        when(categoryPersistencePort.getAllCategories(anyInt(), anyInt())).thenReturn(Collections.singletonList(category));
+        when(categoryPersistencePort.getAllCategories(anyInt(), anyInt(),anyBoolean())).thenReturn(Collections.singletonList(category));
 
         // Act
-        List<Category> result = categoryUseCase.getAllCategories(0, 10);
+        List<Category> result = categoryUseCase.getAllCategories(0, 10, true);
 
         // Assert
         assertNotNull(result);

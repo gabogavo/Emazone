@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 
@@ -92,16 +93,19 @@ class CategoryAdapterTest {
     @Test
     void getAllCategories_ReturnsListOfCategories() {
         // Arrange
-        List<CategoryEntity> categoryEntities = List.of(new CategoryEntity(1L, "Electronics name", "Electronics description"));
-        when(categoryRepository.findAll(any(Pageable.class))).thenReturn(new PageImpl<>(categoryEntities));
-        when(categoryEntityMapper.toModelList(categoryEntities)).thenReturn(List.of(new Category(1L, "Electronics name", "Electronics description")));
+        CategoryEntity categoryEntity = new CategoryEntity(1L, "Electronics name", "Electronics description");
+        Page<CategoryEntity> categoryEntitiesPage = new PageImpl<>(List.of(categoryEntity));
+        when(categoryRepository.findAllByOrderByNameAsc(any(Pageable.class))).thenReturn(categoryEntitiesPage);
+        when(categoryEntityMapper.toModelList(anyList())).thenReturn(List.of(new Category(1L, "Electronics name", "Electronics description")));
 
         // Act
-        List<Category> categories = categoryAdapter.getAllCategories(0, 10);
+        List<Category> categories = categoryAdapter.getAllCategories(0, 10, true);
 
         // Assert
         assertNotNull(categories);
         assertFalse(categories.isEmpty());
+        assertEquals(1, categories.size()); // Verifica que la lista tenga exactamente un elemento
+        assertEquals("Electronics name", categories.get(0).getName());
     }
 
     @Test

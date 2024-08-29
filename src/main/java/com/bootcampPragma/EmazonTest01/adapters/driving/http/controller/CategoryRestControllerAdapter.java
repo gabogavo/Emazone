@@ -34,8 +34,9 @@ public class CategoryRestControllerAdapter {
     }
 
     @GetMapping("/")
-    public ResponseEntity<List<CategoryResponse>> getAllCategories(@RequestParam Integer page, @RequestParam Integer size) {
-        return ResponseEntity.ok(categoryResponseMapper.toCategoryResponseList(categoryServicePort.getAllCategories(page, size)));
+    public ResponseEntity<List<CategoryResponse>> getAllCategories(@RequestParam Integer page, @RequestParam Integer size,
+                                                                   @RequestParam(required = false, defaultValue = "true") boolean ascending) {
+        return ResponseEntity.ok(categoryResponseMapper.toCategoryResponseList(categoryServicePort.getAllCategories(page, size, ascending)));
     }
 
     @PutMapping("/")

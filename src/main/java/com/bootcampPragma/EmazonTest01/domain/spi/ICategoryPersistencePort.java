@@ -11,7 +11,7 @@ public interface ICategoryPersistencePort {
 
     Category getCategory();
 
-    List<Category> getAllCategories(Integer page, Integer size);
+    List<Category> getAllCategories(Integer page, Integer size, boolean ascending);
 
     Category updateCategory(Category category);
 

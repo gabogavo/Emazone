@@ -80,14 +80,16 @@ class CategoryRestControllerAdapterTest {
         // Arrange
         Category category = new Category(1L, "CategoryName", "Description");
         CategoryResponse categoryResponse = new CategoryResponse(1L, "CategoryName", "Description");
-        when(categoryServicePort.getAllCategories(anyInt(), anyInt())).thenReturn(Collections.singletonList(category));
+
+        // Mockear los métodos para que retornen los valores esperados
+        when(categoryServicePort.getAllCategories(anyInt(), anyInt(), anyBoolean())).thenReturn(Collections.singletonList(category));
         when(categoryResponseMapper.toCategoryResponseList(anyList())).thenReturn(Collections.singletonList(categoryResponse));
 
         // Act
-        ResponseEntity<List<CategoryResponse>> response = categoryRestControllerAdapter.getAllCategories(0, 10);
+        ResponseEntity<List<CategoryResponse>> response = categoryRestControllerAdapter.getAllCategories(0, 10, true);
 
         // Assert
-        verify(categoryServicePort).getAllCategories(0, 10);
+        verify(categoryServicePort).getAllCategories(0, 10, true);
         verify(categoryResponseMapper).toCategoryResponseList(Collections.singletonList(category));
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(1, response.getBody().size());

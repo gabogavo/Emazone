@@ -11,4 +11,8 @@ public interface ICategoryRepository extends JpaRepository<CategoryEntity, Long>
     Optional<CategoryEntity> findByName(String name);
     @Override
     Page<CategoryEntity> findAll(Pageable pageable);
+
+    // Nuevo método para ordenar por nombre
+    Page<CategoryEntity> findAllByOrderByNameAsc(Pageable pageable);
+    Page<CategoryEntity> findAllByOrderByNameDesc(Pageable pageable);
 }
