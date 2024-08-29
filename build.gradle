@@ -2,6 +2,7 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.3.2'
 	id 'io.spring.dependency-management' version '1.1.6'
+	id 'jacoco'
 }
 
 group = 'com.bootcampPragma'
@@ -20,18 +21,37 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'mysql:mysql-connector-java:8.0.33' // Versión estable reciente
-	// implementation 'jakarta.persistence:jakarta.persistence-api:3.1.0' // No es necesario si ya usas spring-boot-starter-data-jpa
+	implementation 'mysql:mysql-connector-java:8.0.33'
 	implementation 'org.hibernate.validator:hibernate-validator:8.0.0.Final'
 	implementation 'org.mapstruct:mapstruct:1.5.2.Final'
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 	annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.2.Final'
+
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'com.h2database:h2'
-	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+	// Agrega JaCoCo para el reporte de cobertura de pruebas
+	implementation 'org.junit.jupiter:junit-jupiter-api:5.9.2'
+	testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.2'
 }
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+jacoco {
+	toolVersion = '0.8.8'
+}
+
+tasks.withType(Test) {
+	useJUnitPlatform()
+	finalizedBy tasks.jacocoTestReport
+}
+
+jacocoTestReport {
+	reports {
+		xml.required.set(true)
+		html.required.set(true)
+	}
 }
