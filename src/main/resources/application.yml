@@ -4,8 +4,8 @@ server:
 spring:
   datasource:
     url: jdbc:mysql://localhost:3306/emazone
-    username: root
-    password: Sexy1032.
+    username: ${username}
+    password: ${password} #estos parametros se pasan por edit config, enviroment variables
   jpa:
     hibernate:
       ddl-auto: update
