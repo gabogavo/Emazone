@@ -15,6 +15,8 @@ public class DomainConstants {
 
     public static final int MAX_NAME_LENGTH = 50;
     public static final int MAX_DESCRIPTION_LENGTH = 90;
+    public static final int MAX_DESCRIPTION_LENGTH_BRAND = 120;
     public static final String CATEGORY_ALREADY_EXISTS_MESSAGE = "Category with name '%s' already exists.";
+    public static final String BRAND_ALREADY_EXISTS_MESSAGE = "Brand with name '%s' already exists.";
 
 }

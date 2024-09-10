@@ -2,7 +2,6 @@ package com.bootcampPragma.EmazonTest01.domain.model;
 
 import com.bootcampPragma.EmazonTest01.domain.exception.EmptyFieldException;
 import com.bootcampPragma.EmazonTest01.domain.exception.FieldTooLongException;
-import com.bootcampPragma.EmazonTest01.domain.model.Category;
 import com.bootcampPragma.EmazonTest01.domain.util.DomainConstants;
 import org.junit.jupiter.api.Test;
 

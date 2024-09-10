@@ -12,4 +12,6 @@ public class Constants {
     public static final String FIELD_TOO_LONG_EXCEPTION_MESSAGE = "The field '%s' exceeds the allowed length.";
     public static final String CATEGORY_ALREADY_EXISTS_MESSAGE = "Category already exists.";
     public static final String CATEGORY_NOT_FOUND_EXCEPTION_MESSAGE = "Category not found.";
+    public static final String BRAND_ALREADY_EXISTS_MESSAGE = "Brand already exists.";
+    public static final String BRAND_NOT_FOUND_EXCEPTION_MESSAGE = "Brand not found.";
 }

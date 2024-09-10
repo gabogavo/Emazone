@@ -9,8 +9,6 @@ public interface ICategoryServicePort {
 
     Category getCategory(Long id);
 
-    Category getCategory(String name);
-
     List<Category> getAllCategories(Integer page, Integer size, boolean ascending);
 
     Category updateCategory(Category category);

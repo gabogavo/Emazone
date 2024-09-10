@@ -1,5 +1,7 @@
 package com.bootcampPragma.EmazonTest01.configuration.exceptionhandler;
 
+import com.bootcampPragma.EmazonTest01.adapters.driven.jpa.mysql.exception.BrandAlreadyExistsException;
+import com.bootcampPragma.EmazonTest01.adapters.driven.jpa.mysql.exception.BrandNotFoundException;
 import com.bootcampPragma.EmazonTest01.adapters.driven.jpa.mysql.exception.CategoryAlreadyExistsException;
 import com.bootcampPragma.EmazonTest01.adapters.driven.jpa.mysql.exception.CategoryNotFoundException;
 import com.bootcampPragma.EmazonTest01.configuration.Constants;
@@ -42,5 +44,17 @@ public class ControllerAdvisor {
     public ResponseEntity<ExceptionResponse> handleCategoryNotFoundException() {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ExceptionResponse(
                 Constants.CATEGORY_NOT_FOUND_EXCEPTION_MESSAGE, HttpStatus.NOT_FOUND.toString(), LocalDateTime.now()));
+    }
+
+    @ExceptionHandler(BrandAlreadyExistsException.class)
+    public ResponseEntity<ExceptionResponse> handleBrandAlreadyExistsException() {
+        return ResponseEntity.badRequest().body(new ExceptionResponse(
+                Constants.BRAND_ALREADY_EXISTS_MESSAGE,
+                HttpStatus.BAD_REQUEST.toString(), LocalDateTime.now()));
+    }
+    @ExceptionHandler(BrandNotFoundException.class)
+    public ResponseEntity<ExceptionResponse> handleBrandNotFoundException() {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ExceptionResponse(
+                Constants.BRAND_NOT_FOUND_EXCEPTION_MESSAGE, HttpStatus.NOT_FOUND.toString(), LocalDateTime.now()));
     }
 }

@@ -44,9 +44,4 @@ public class CategoryUseCase implements ICategoryServicePort {
         categoryPersistencePort.deleteCategory(id);
     }
 
-    @Override
-    public Category getCategory(String name) {
-         categoryPersistencePort.getCategory();
-        return null;
-    }
 }
