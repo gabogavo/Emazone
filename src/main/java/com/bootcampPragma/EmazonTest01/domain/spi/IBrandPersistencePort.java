@@ -10,7 +10,7 @@ public interface IBrandPersistencePort {
 
     Brand getBrand(Long id);
 
-    List<Brand> getAllBrands(Integer page, Integer size);
+    List<Brand> getAllBrands(Integer page, Integer size, boolean ascending);
 
     boolean brandExistsByName(String name);
 

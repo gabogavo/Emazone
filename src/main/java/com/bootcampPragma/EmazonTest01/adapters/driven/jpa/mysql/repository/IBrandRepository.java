@@ -11,4 +11,8 @@ public interface IBrandRepository extends JpaRepository<BrandEntity, Long> {
     Optional<BrandEntity> findByName(String name);
     @Override
     Page<BrandEntity> findAll(Pageable pageable);
+
+    // Nuevo método para ordenar por nombre HU asc/desc
+    Page<BrandEntity> findAllByOrderByNameAsc(Pageable pageable);
+    Page<BrandEntity> findAllByOrderByNameDesc(Pageable pageable);
 }

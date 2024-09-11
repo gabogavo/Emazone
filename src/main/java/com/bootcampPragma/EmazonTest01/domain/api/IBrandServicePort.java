@@ -9,7 +9,7 @@ public interface IBrandServicePort {
 
     Brand getBrand(Long id);
 
-    List<Brand> getAllBrands(Integer page, Integer size);
+    List<Brand> getAllBrands(Integer page, Integer size, boolean ascending);
 
     Brand updateBrand(Brand brand);
 

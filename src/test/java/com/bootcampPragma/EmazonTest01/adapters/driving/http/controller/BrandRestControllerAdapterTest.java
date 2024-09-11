@@ -79,14 +79,14 @@ class BrandRestControllerAdapterTest {
         // Arrange
         Brand brand = new Brand(1L, "BrandName", "Description");
         BrandResponse brandResponse = new BrandResponse(1L, "BrandName", "Description");
-        when(brandServicePort.getAllBrands(anyInt(), anyInt())).thenReturn(Collections.singletonList(brand));
+        when(brandServicePort.getAllBrands(anyInt(), anyInt(), anyBoolean())).thenReturn(Collections.singletonList(brand));
         when(brandResponseMapper.toBrandResponseList(anyList())).thenReturn(Collections.singletonList(brandResponse));
 
         // Act
-        ResponseEntity<List<BrandResponse>> response = brandRestControllerAdapter.getAllBrands(0, 10);
+        ResponseEntity<List<BrandResponse>> response = brandRestControllerAdapter.getAllBrands(0, 10, true);
 
         // Assert
-        verify(brandServicePort).getAllBrands(0, 10);
+        verify(brandServicePort).getAllBrands(0, 10,true);
         verify(brandResponseMapper).toBrandResponseList(Collections.singletonList(brand));
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(1, response.getBody().size());

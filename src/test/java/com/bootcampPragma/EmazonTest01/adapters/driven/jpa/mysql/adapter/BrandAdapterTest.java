@@ -96,16 +96,18 @@ class BrandAdapterTest {
     @Test
     void getAllBrands_ReturnsListOfBrands() {
         // Arrange
-        List<BrandEntity> brandEntities = List.of(new BrandEntity(1L, "Electronics name", "Electronics description"));
-        when(brandRepository.findAll(any(Pageable.class))).thenReturn(new PageImpl<>(brandEntities));
-        when(brandEntityMapper.toModelList(brandEntities)).thenReturn(List.of(new Brand(1L, "Electronics name", "Electronics description")));
-
+        BrandEntity brandEntity = new BrandEntity(1L, "Electronics name", "Electronics description");
+        Page<BrandEntity> brandEntitiesPage = new PageImpl<>(List.of(brandEntity));
+        when(brandRepository.findAllByOrderByNameAsc(any(Pageable.class))).thenReturn(brandEntitiesPage);
+        when(brandEntityMapper.toModelList(anyList())).thenReturn(List.of(new Brand(1L, "Electronics name", "Electronics description")));
         // Act
-        List<Brand> brands = brandAdapter.getAllBrands(0, 10);
+        List<Brand> brands = brandAdapter.getAllBrands(0, 10, true);
 
         // Assert
         assertNotNull(brands);
         assertFalse(brands.isEmpty());
+        assertEquals(1, brands.size()); // Verifica que la lista tenga exactamente un elemento
+        assertEquals("Electronics name", brands.get(0).getName());
     }
 
     @Test

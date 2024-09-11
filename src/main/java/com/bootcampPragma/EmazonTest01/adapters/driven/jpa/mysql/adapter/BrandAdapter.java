@@ -37,9 +37,15 @@ public class BrandAdapter implements IBrandPersistencePort {
     }
 
     @Override
-    public List<Brand> getAllBrands(Integer page, Integer size) {
+    public List<Brand> getAllBrands(Integer page, Integer size, boolean ascending) {
         Pageable pagination = PageRequest.of(page, size);
-        List<BrandEntity> brandEntities = brandRepository.findAll(pagination).getContent();
+        List<BrandEntity> brandEntities;
+
+        if (ascending) {
+            brandEntities = brandRepository.findAllByOrderByNameAsc(pagination).getContent();
+        } else {
+            brandEntities = brandRepository.findAllByOrderByNameDesc(pagination).getContent();
+        }
         return brandEntityMapper.toModelList(brandEntities);
     }
 

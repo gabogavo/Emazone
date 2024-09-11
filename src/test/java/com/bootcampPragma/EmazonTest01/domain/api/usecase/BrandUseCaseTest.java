@@ -70,10 +70,10 @@ class BrandUseCaseTest {
     void getAllBrands_ReturnsList() {
         // Arrange
         Brand brand = new Brand(1L, "BrandName", "Description");
-        when(brandPersistencePort.getAllBrands(anyInt(), anyInt())).thenReturn(Collections.singletonList(brand));
+        when(brandPersistencePort.getAllBrands(anyInt(), anyInt(), anyBoolean())).thenReturn(Collections.singletonList(brand));
 
         // Act
-        List<Brand> result = brandUseCase.getAllBrands(0, 10);
+        List<Brand> result = brandUseCase.getAllBrands(0, 10, true);
 
         // Assert
         assertNotNull(result);
